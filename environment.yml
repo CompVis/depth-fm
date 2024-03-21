@@ -1,0 +1,20 @@
+name: dfm
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - omegaconf>=2.3.0
+  - accelerate>=0.27.2
+  - diffusers=0.24.0
+  - matplotlib>=3.8.1
+  - python=3.11.5
+  - pytorch=2.1.0
+  - pytorch-cuda=12.1
+  - pip=23.3
+  - pip:
+    - transformers==4.35.0
+    - einops==0.7.0
+    - torchdiffeq==0.2.3
+    - xformers==0.0.22.post7
