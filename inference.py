@@ -60,7 +60,7 @@ def main(args):
 
     # Load the model
     model = DepthFM(args.ckpt)
-    model.cuda().eval()
+    model.cuda(args.device).eval()
 
     # Load an image
     resample_method = getattr(Resampling, args.resample_method.upper())
