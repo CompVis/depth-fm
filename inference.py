@@ -39,11 +39,11 @@ def resize_max_res(
     resized_img = img.resize((new_width, new_height), resample=resample_method)
     return resized_img, (original_width, original_height)
 
-def load_im(fp, processing_res=640, resample_method=Resampling.BILINEAR):
+def load_im(fp, processing_res=0, resample_method=Resampling.BILINEAR):
     assert os.path.exists(fp), f"File not found: {fp}"
     im = Image.open(fp).convert('RGB')
     if processing_res != 0:
-        im, orig_res = resize_max_res(im, processing_res)
+        im, orig_res = resize_max_res(im, processing_res, resample_method)
     else:
         orig_res = im.size
     x = np.array(im)
@@ -102,7 +102,7 @@ if __name__ == "__main__":
                         help="If set, the depth map will be grayscale")
     parser.add_argument("--device", type=int, default=0,
                         help="GPU to use")
-    parser.add_argument("--processing_res", type=int, default=0, help="Maximum resolution of processing. 0 for using input image resolution")
+    parser.add_argument("--processing_res", type=int, default=0, help="Maximum resolution of processing. 0 for using input image resolution. Default: 0")
     parser.add_argument("--dtype", type="str", choices=["fp32", "bf16", "fp16"], type="str", default="fp32", help="Run with specific precision. May speed-up the process with subtle loss")
     parser.add_argument(
         "--resample_method",
