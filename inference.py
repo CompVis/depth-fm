@@ -64,7 +64,7 @@ def main(args):
 
     # Load an image
     resample_method = getattr(Resampling, args.resample_method.upper())
-    im, orig_res = load_im(args.img, args.processing_res, resample_method).cuda()
+    im, orig_res = load_im(args.img, args.processing_res, resample_method).cuda(args.device)
 
     # Generate depth
     dtype = get_dtype_from_str(args.dtype)
