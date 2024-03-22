@@ -64,7 +64,7 @@ def main(args):
 
     # Load an image
     resample_method = getattr(Resampling, args.resample_method.upper())
-    im, orig_res = load_im(args.img, resample_method).cuda()
+    im, orig_res = load_im(args.img, args.processing_res, resample_method).cuda()
 
     # Generate depth
     dtype = get_dtype_from_str(args.dtype)
@@ -81,7 +81,10 @@ def main(args):
 
     # Save the depth map
     depth_fp = args.img.replace('.png', '-depth.png')
-    Image.fromarray(depth).resize(orig_res, resample=resample_method).save(depth_fp)
+    depth_img = Image.fromarray(depth)
+    if depth_img.size != orig_res:
+        depth_img = depth_img.resize(orig_res, resample_method)
+    depth_img.save(depth_fp)
     print(f"==> Saved depth map to {depth_fp}")
 
 
