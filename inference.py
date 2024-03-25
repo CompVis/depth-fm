@@ -29,21 +29,24 @@ def resize_max_res(
         `Image.Image`: Resized image.
     """
     original_width, original_height = img.size
-    downscale_factor = min(
-        max_edge_resolution / original_width, max_edge_resolution / original_height
-    )
+    downscale_factor = min( max_edge_resolution / original_width, max_edge_resolution / original_height)
 
-    new_width = int(original_width * downscale_factor)
+    new_width  = int(original_width * downscale_factor)
     new_height = int(original_height * downscale_factor)
+
+    new_width  = round(new_width / 64) * 64
+    new_height = round(new_height / 64) * 64
+
+    print(f"Resizing image from {original_width}x{original_height} to {new_width}x{new_height}")
 
     resized_img = img.resize((new_width, new_height), resample=resample_method)
     return resized_img, (original_width, original_height)
 
-def load_im(fp, processing_res=0, resample_method=Resampling.BILINEAR):
+def load_im(fp, processing_res=-1):
     assert os.path.exists(fp), f"File not found: {fp}"
     im = Image.open(fp).convert('RGB')
-    if processing_res != 0:
-        im, orig_res = resize_max_res(im, processing_res, resample_method)
+    if processing_res > 0:
+        im, orig_res = resize_max_res(im, processing_res)
     else:
         orig_res = im.size
     x = np.array(im)
@@ -63,8 +66,8 @@ def main(args):
     model.cuda(args.device).eval()
 
     # Load an image
-    resample_method = getattr(Resampling, args.resample_method.upper())
-    im, orig_res = load_im(args.img, args.processing_res, resample_method).cuda(args.device)
+    im, orig_res = load_im(args.img, args.processing_res)
+    im = im.cuda(args.device)
 
     # Generate depth
     dtype = get_dtype_from_str(args.dtype)
@@ -83,7 +86,7 @@ def main(args):
     depth_fp = args.img.replace('.png', '-depth.png')
     depth_img = Image.fromarray(depth)
     if depth_img.size != orig_res:
-        depth_img = depth_img.resize(orig_res, resample_method)
+        depth_img = depth_img.resize(orig_res, Resampling.BILINEAR)
     depth_img.save(depth_fp)
     print(f"==> Saved depth map to {depth_fp}")
 
@@ -102,14 +105,10 @@ if __name__ == "__main__":
                         help="If set, the depth map will be grayscale")
     parser.add_argument("--device", type=int, default=0,
                         help="GPU to use")
-    parser.add_argument("--processing_res", type=int, default=0, help="Maximum resolution of processing. 0 for using input image resolution. Default: 0")
-    parser.add_argument("--dtype", type="str", choices=["fp32", "bf16", "fp16"], type="str", default="fp32", help="Run with specific precision. May speed-up the process with subtle loss")
-    parser.add_argument(
-        "--resample_method",
-        choices=["bilinear", "bicubic", "nearest"],
-        default="bilinear",
-        help="Resampling method used to resize images and depth predictions if --progressing_res != 0",
-    )
+    parser.add_argument("--processing_res", type=int, default=-1, 
+                        help="Longer edge of the image will be resized to this resolution. -1 to disable resizing.")
+    parser.add_argument("--dtype", type=str, choices=["fp32", "bf16", "fp16"], default="fp16", 
+                        help="Run with specific precision. Speeds up inference with subtle loss")
     args = parser.parse_args()
 
     main(args)
