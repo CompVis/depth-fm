@@ -45,10 +45,9 @@ def resize_max_res(
 def load_im(fp, processing_res=-1):
     assert os.path.exists(fp), f"File not found: {fp}"
     im = Image.open(fp).convert('RGB')
-    if processing_res > 0:
-        im, orig_res = resize_max_res(im, processing_res)
-    else:
-        orig_res = im.size
+    if processing_res < 0:
+        processing_res = max(im.size)
+    im, orig_res = resize_max_res(im, processing_res)
     x = np.array(im)
     x = einops.rearrange(x, 'h w c -> c h w')
     x = x / 127.5 - 1
