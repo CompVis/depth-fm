@@ -37,7 +37,7 @@ First, clone the github repo...
 
 ```bash
 git clone git@github.com:CompVis/depth-fm.git
-cd dfm
+cd depth-fm
 ```
 
 Then download the weights via

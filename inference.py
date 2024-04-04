@@ -82,7 +82,7 @@ def main(args):
         depth = plt.get_cmap('magma')(depth, bytes=True)[..., :3]
 
     # Save the depth map
-    depth_fp = args.img.replace('.png', '-depth.png')
+    depth_fp = args.img + '_depth.png'
     depth_img = Image.fromarray(depth)
     if depth_img.size != orig_res:
         depth_img = depth_img.resize(orig_res, Resampling.BILINEAR)
