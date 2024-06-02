@@ -83,6 +83,13 @@ Our quantitative analysis shows that despite being substantially more efficient,
 
 
 
+## Trend
+
+[![Star History Chart](https://api.star-history.com/svg?repos=CompVis/depth-fm&type=Date)](https://star-history.com/#CompVis/depth-fm&Date)
+
+
+
+
 ## 🎓 Citation
 
 Please cite our paper:
