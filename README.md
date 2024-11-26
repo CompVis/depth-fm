@@ -2,7 +2,7 @@
  <!-- <h2 align="center">📻 DepthFM: Fast Monocular Depth Estimation with Flow Matching</h2> -->
  <h2 align="center"><img src=assets/figures/radio.png width=28> DepthFM: Fast Monocular Depth Estimation with Flow Matching</h2>
  <p align="center"> 
-    Ming Gui<sup>*</sup> · Johannes S. Fischer<sup>*</sup> · Ulrich Prestel · Pingchuan Ma
+    Ming Gui<sup>*</sup> · Johannes Schusterbauer<sup>*</sup> · Ulrich Prestel · Pingchuan Ma
  </p><p align="center"> 
     Dmytro Kotovenko · Olga Grebenkova · Stefan A. Baumann · Vincent Tao Hu · Björn Ommer
  </p>
