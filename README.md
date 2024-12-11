@@ -1,5 +1,5 @@
 <p align="center">
- <!-- <h2 align="center">📻 DepthFM: Fast Monocular Depth Estimation with Flow Matching (AAAI 2025)</h2> -->
+ <!-- <h2 align="center">📻 DepthFM: Fast Monocular Depth Estimation with Flow Matching</h2> -->
  <h2 align="center"><img src=assets/figures/radio.png width=28> DepthFM: Fast Monocular Depth Estimation with Flow Matching</h2>
  <p align="center"> 
     Ming Gui<sup>*</sup> · Johannes Schusterbauer<sup>*</sup> · Ulrich Prestel · Pingchuan Ma
@@ -8,6 +8,9 @@
  </p>
  <p align="center"> 
     <b>CompVis Group @ LMU Munich</b>
+ </p>
+ <p align="center"> 
+    <b>AAAI 2025</b>
  </p>
   <p align="center"> <sup>*</sup> <i>equal contribution</i> </p>
 </p>
