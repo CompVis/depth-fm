@@ -16,8 +16,7 @@
 </p>
 
  </p>
- 
- 
+
 [![Website](assets/figures/badge-website.svg)](https://depthfm.github.io)
 [![Paper](https://img.shields.io/badge/arXiv-PDF-b31b1b)](https://arxiv.org/abs/2403.13788)
 
@@ -34,7 +33,7 @@ With our work we demonstrate the successful transfer of strong image priors from
 
 ## 🛠️ Setup
 
-This setup was tested with `Ubuntu 22.04.4 LTS`, `CUDA Version: 12.2`, and `Python 3.11.5`.
+This setup was tested with `Ubuntu 22.04.4 LTS`, `CUDA Version: 12.4`, and `Python 3.10.12`.
 
 First, clone the github repo...
 
@@ -80,7 +79,7 @@ The argument `--num_steps` allows you to set the number of function evaluations.
 
 ## 📈 Results
 
-Our quantitative analysis shows that despite being substantially more efficient, our DepthFM outperforms the current state-of-the-art generative depth estimator Marigold **zero-shot** on a range of benchmark datasets. Below you can find a quantitative comparison of DepthFM against other affine-invariant depth estimators on several benchmarks.
+Our quantitative analysis shows that despite being substantially more efficient, our DepthFM performs on-par or even outperforms the current state-of-the-art generative depth estimator Marigold **zero-shot** on a range of benchmark datasets. Below you can find a quantitative comparison of DepthFM against other affine-invariant depth estimators on several benchmarks.
 
 ![Results](/assets/figures/sota-comparison.jpg)
 
@@ -100,7 +99,7 @@ Please cite our paper:
 ```bibtex
 @misc{gui2024depthfm,
       title={DepthFM: Fast Monocular Depth Estimation with Flow Matching}, 
-      author={Ming Gui, Johannes S. Fischer, Ulrich Prestel, Pingchuan Ma, Dmytro Kotovenko, Olga Grebenkova, Stefan Andreas Baumann, Vincent Tao Hu, Björn Ommer},
+      author={Ming Gui and Johannes Schusterbauer and Ulrich Prestel and Pingchuan Ma and Dmytro Kotovenko and Olga Grebenkova and Stefan Andreas Baumann and Vincent Tao Hu and Björn Ommer},
       year={2024},
       eprint={2403.13788},
       archivePrefix={arXiv},

@@ -2,3 +2,4 @@
 sandbox
 *.ckpt
 *-depth.png
+evaluation
