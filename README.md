@@ -10,7 +10,7 @@
     <b>CompVis Group @ LMU Munich</b>
  </p>
  <p align="center"> 
-    <b>AAAI 2025</b>
+    <b>AAAI 2025 Oral</b>
  </p>
   <p align="center"> <sup>*</sup> <i>equal contribution</i> </p>
 </p>
